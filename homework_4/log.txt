@@ -1,0 +1,120 @@
+mysql> use dbwa_whatever
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SELECT b.bookableId
+    -> FROM BookedBy bb, Bookables b
+    -> WHERE bb.bookableId = b.bookableId AND
+    ->       b.hasToBeReturned = TRUE;
++------------+
+| bookableId |
++------------+
+|          2 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT u.userId, u.email, u.firstName, u.lastName
+    -> FROM User u, BookedBy bb
+    -> WHERE u.userId = bb.userId AND
+    ->       bb.bookableId = 1;
++--------+-----------------------------+-----------+----------+
+| userId | email                       | firstName | lastName |
++--------+-----------------------------+-----------+----------+
+|   3792 | siliev@jacobs-university.de | Simo      | Iliev    |
++--------+-----------------------------+-----------+----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT COUNT(wf.userId)
+    -> FROM WaitingFor wf
+    -> WHERE wf.bookableId = 2;
++------------------+
+| COUNT(wf.userId) |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT u.email
+    -> FROM ManagedBy mb, User u
+    -> WHERE mb.userId = u.userId AND
+    ->       mb.bookableId = 1;
++--------------------------------+
+| email                          |
++--------------------------------+
+| dbohovich@jacobs-university.de |
++--------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT u.college, SUM(tmp.cnt)
+    -> FROM User u, (SELECT uu.userId, COUNT(*) AS cnt
+    ->               FROM User uu, BookedBy bb
+    ->               WHERE uu.userId = bb.userId) AS tmp
+    -> WHERE u.userId = tmp.userId
+    -> GROUP BY u.college;
++---------+--------------+
+| college | SUM(tmp.cnt) |
++---------+--------------+
+| C3      |            2 |
++---------+--------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM User u
+    -> WHERE (u.userId NOT IN(
+    ->       SELECT r.userId
+    ->       FROM Regular r
+    ->     ));
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+| firstName | lastName  | college | major | role  | email                           | country  | userId |
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+| Kiril     | Kafadarov | C3      | CS    | admin | kkafadarov@jacobs-university.de | Bulgaria |   3793 |
+| Djonga    | Bohovich  | C3      | CS    | super | dbohovich@jacobs-university.de  | Bulgaria |   3794 |
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM User u
+    -> WHERE u.college = 'C3';
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+| firstName | lastName  | college | major | role  | email                           | country  | userId |
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+| Simo      | Iliev     | C3      | CS    | user  | siliev@jacobs-university.de     | Bulgaria |   3792 |
+| Kiril     | Kafadarov | C3      | CS    | admin | kkafadarov@jacobs-university.de | Bulgaria |   3793 |
+| Djonga    | Bohovich  | C3      | CS    | super | dbohovich@jacobs-university.de  | Bulgaria |   3794 |
++-----------+-----------+---------+-------+-------+---------------------------------+----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Bookables b
+    -> ORDER BY b.maxBookTime ASC;
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+| bookableId | name   | requiresApproval | maxBookTime | hasToBeReturned | notes       | damagePolicy |
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+|          2 | Vacuum |                1 |          90 |               1 | dummy notes | dummy policy |
+|          1 | MMR    |                1 |         300 |               0 | dummy notes | dummy policy |
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> Select u.firstName, u.lastName
+    -> FROM User u
+    -> ORDER BY u.firstName, u.lastName ASC;
++-----------+-----------+
+| firstName | lastName  |
++-----------+-----------+
+| Djonga    | Bohovich  |
+| Kiril     | Kafadarov |
+| Simo      | Iliev     |
++-----------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM Bookables b
+    -> WHERE b.requiresApproval = TRUE;
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+| bookableId | name   | requiresApproval | maxBookTime | hasToBeReturned | notes       | damagePolicy |
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+|          1 | MMR    |                1 |         300 |               0 | dummy notes | dummy policy |
+|          2 | Vacuum |                1 |          90 |               1 | dummy notes | dummy policy |
++------------+--------+------------------+-------------+-----------------+-------------+--------------+
+2 rows in set (0.00 sec)
