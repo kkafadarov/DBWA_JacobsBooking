@@ -69,10 +69,19 @@
           <input type="regular" id="maxBookTime" class="form-control" placeholder="24" required>
           <label for="damagePolicy" style="margin-top:5px">Damage Policy</label>
           <input type="regular" id="damagePolicy" class="form-control" placeholder="24" required>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="requiresApproval">Requires approval</input>
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="hasToBeReturned">Has to be returned</input>
+            </label>
+          </div>
           <label for="notes" style="margin-top:5px">Notes</label>
-          <textarea type="regular" id="notes" class="form-control" placeholder="" required>
-          
-          <a class="btn btn-lg btn-primary btn-block" type="submit" href="result.html">Submit</a>
+          <textarea type="regular" id="notes" class="form-control" placeholder="" required></textarea>
+          <a class="btn btn-lg btn-primary btn-block" style="margin-top: 10px" type="submit" href="result.html">Submit</a>
         </div>
       </form>
     </div> <!-- /container -->
