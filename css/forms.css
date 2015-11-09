@@ -16,6 +16,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
+.form-group,
 .form-signin {
   max-width: 330px;
   padding: 15px;
@@ -24,6 +25,7 @@ body {
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
+  text-align: center;
   margin-bottom: 10px;
 }
 .form-signin .checkbox {
@@ -41,11 +43,16 @@ body {
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
+.form-group input[type="regular"],
 .form-signin input[type="username"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.form-group input[type="last"],
+.form-control select[type="last"],
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
