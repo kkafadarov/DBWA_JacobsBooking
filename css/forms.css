@@ -16,9 +16,9 @@ body {
 .white-box{
     background-color: #eee;
     display:inline-block;
-    border: 0px #337AB7 solid;
-    padding-left: 40px;
-    padding-right: 40px;
+    border-top: 20px #337AB7 solid;
+    padding-left: 60px;
+    padding-right: 60px;
     padding-bottom: 25px;
     -webkit-border-radius: 25px 25px 25px 24px;
     -moz-border-radius: 25px 25px 25px 24px;
