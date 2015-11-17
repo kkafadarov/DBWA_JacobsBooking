@@ -4,6 +4,27 @@ body {
   background-color: #eee;
 }
 
+.background-picture{
+    background: url(images/back2.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.white-box{
+    background-color: #eee;
+    display:inline-block;
+    border-top: 20px #337AB7 solid;
+    padding-left: 60px;
+    padding-right: 60px;
+    padding-bottom: 25px;
+    -webkit-border-radius: 25px 25px 25px 24px;
+    -moz-border-radius: 25px 25px 25px 24px;
+    border-radius: 25px 25px 25px 24px;
+}
+
 .container {
   vertical-align: middle;
 }
