@@ -65,17 +65,21 @@
 import sys
 import MySQLdb
 
-if form.has_key("userId"):
-  userId = form["userId"]
+if form.has_key("bookableId"):
+  bookableId = form["bookableId"]
 else:
-  userId = None
+  bookableId = None
 
-if (userId):
+if (bookableId):
   conn = MySQLdb.connect(host="localhost", user="dbwa_whatever", passwd="!!123abc", db="dbwa_whatever") 
   cursor = conn.cursor()
-  cursor.execute ("SELECT * FROM User u WHERE u.userId = %s" % (userId))
-  req.write("<p align>Details of user with userId = %s:</p>" % userId)
+  cursor.execute ("SELECT u.firstName, u.lastName, u.email\
+                   FROM User u, WaitingFor WF\
+                  WHERE u.userId = WF.userId AND WF.bookableId = %s" % (bookableId))
+
+  req.write("<p align>The following users are waiting for the object to become available:</p>")
   req.write("<table class=\"table table-hover\">")
+  req.write("<thead><tr><td>First Name</td><td>Last Name</td><td>Email</td></td></thead>")
   req.write("<tbody>")
   for row in cursor.fetchall():
     req.write("<tr>")

@@ -74,7 +74,8 @@ if (userId):
   conn = MySQLdb.connect(host="localhost", user="dbwa_whatever", passwd="!!123abc", db="dbwa_whatever") 
   cursor = conn.cursor()
   cursor.execute ("SELECT * FROM User u WHERE u.userId = %s" % (userId))
-  req.write("<p align>Details of user with userId = %s:</p>" % userId)
+
+  req.write("<p align>The following user has booked the object:</p>")
   req.write("<table class=\"table table-hover\">")
   req.write("<tbody>")
   for row in cursor.fetchall():

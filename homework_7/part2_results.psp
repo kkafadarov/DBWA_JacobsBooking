@@ -65,24 +65,29 @@
 import sys
 import MySQLdb
 
-if form.has_key("userId"):
-  userId = form["userId"]
+if form.has_key("bookableId"):
+  bookableId = form["bookableId"]
 else:
-  userId = None
+  bookableId = None
 
-if (userId):
+if (bookableId):
   conn = MySQLdb.connect(host="localhost", user="dbwa_whatever", passwd="!!123abc", db="dbwa_whatever") 
   cursor = conn.cursor()
-  cursor.execute ("SELECT * FROM User u WHERE u.userId = %s" % (userId))
-  req.write("<p align>Details of user with userId = %s:</p>" % userId)
+  cursor.execute("SELECT u.userId, u.email, u.firstName, u.lastName \
+                  FROM User u, BookedBy bb \
+                  WHERE (u.userId = bb.userId AND bb.bookableId = %s)" % bookableId)
+
   req.write("<table class=\"table table-hover\">")
+  req.write("<thead><tr><td>userId</td><td>First Name</td><td>Last Name</td><td>Email</td></td></thead>")
   req.write("<tbody>")
   for row in cursor.fetchall():
     req.write("<tr>")
     for field in row:
       req.write("<td>" + str(field) + "</td>")
+    req.write("<td><form action=\"part2_detailed.psp\" method=\"post\">")
+    req.write("<input type=\"hidden\" name=\"userId\" value=\"%s\">" % str(row[0]))
+    req.write("<button class=\"btn btn-primary\" type=\"submit\">Details</button></div></form></td>")
     req.write("</tr>")
-
   req.write("</tbody></table>")
 
   conn.commit()

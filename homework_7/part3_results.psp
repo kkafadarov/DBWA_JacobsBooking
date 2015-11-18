@@ -65,25 +65,26 @@
 import sys
 import MySQLdb
 
-if form.has_key("userId"):
-  userId = form["userId"]
+if form.has_key("bookableId"):
+  bookableId = form["bookableId"]
 else:
-  userId = None
+  bookableId = None
 
-if (userId):
+if (bookableId):
   conn = MySQLdb.connect(host="localhost", user="dbwa_whatever", passwd="!!123abc", db="dbwa_whatever") 
   cursor = conn.cursor()
-  cursor.execute ("SELECT * FROM User u WHERE u.userId = %s" % (userId))
-  req.write("<p align>Details of user with userId = %s:</p>" % userId)
-  req.write("<table class=\"table table-hover\">")
-  req.write("<tbody>")
-  for row in cursor.fetchall():
-    req.write("<tr>")
-    for field in row:
-      req.write("<td>" + str(field) + "</td>")
-    req.write("</tr>")
+  cursor.execute("SELECT COUNT(WF.userId) FROM WaitingFor WF WHERE (WF.bookableId = %s)" % bookableId)
 
-  req.write("</tbody></table>")
+  row = cursor.fetchall()[0]
+
+  req.write("<table class=\"table table-hover\">")
+  req.write("<thead><tr><td>Number of people waiting</td><td>More Info</td></thead>")
+  req.write("<tbody>")
+  req.write("<tr><td>" + str(row[0]) + "</td>")
+  req.write("<td><form action=\"part3_detailed.psp\" method=\"post\">")
+  req.write("<input type=\"hidden\" name=\"bookableId\" value=\"%s\">" % str(bookableId))
+  req.write("<button class=\"btn btn-primary\" type=\"submit\">Details</button></div></form></td>")
+  req.write("</tr></tbody></table>")
 
   conn.commit()
   conn.close()
