@@ -37,7 +37,7 @@ var dummiesAdmins = [
 
 app.controller('JBookController', function(){
 
-    this.userLevel = 1;
+    this.userLevel = 3;
 
     this.myBookings = dummiesMyBookings;
     this.bookables = dummies;
