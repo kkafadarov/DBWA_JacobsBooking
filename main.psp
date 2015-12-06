@@ -113,7 +113,7 @@
                                     <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar{{$index}}').toggle();" href="#Bar{{$index}}" data-toggle="collapse"/>
                                 </td>
                             </tr>
-                            <tr id="Bar{{$index}}" class="collapse in">
+                            <tr id="Bar{{$index}}" class="collapse out">
                                 <td>
                                     <div class="input-group date" data-provide="datepicker">
                                     <input type="text" class="form-control">
