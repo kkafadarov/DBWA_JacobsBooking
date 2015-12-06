@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jBook">
+    <head>
+        <meta charset="utf-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta content="" name="description">
+        <meta content="" name="author">
+
+        <title>Jacobs Booking - Login</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles -->
+        <link href="css/forms.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/sticky-footer.css" rel="stylesheet">
+        <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+        <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+        <script src="js/ie-emulation-modes-warning.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/app.js"></script>
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script> <![endif]-->
+    </head>
+
+    <body >
+
+        <div ng-controller="JBookController as jbcontroller" class="centeredDiv">
+
+            <input name="searchBar" type="text" ng-model="searchText"/></p>
+
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px">
+                <tbody>
+                    <tr ng-repeat="bookable in jbcontroller.bookables | filter:searchText">
+                        <td>
+                            {{bookable.name}}</td>
+                        <td>
+                            {{bookable.status}}</td>
+                        <td>
+                            <input name="bookButton" type="button" value="Book"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">Developed by
+                    <a href="https://github.com/valix25">Vali</a>,
+                    <a href="https://github.com/bharathrabin">Bharath</a>,
+                    <a href="https://github.com/kkafadarov">Kiril</a>
+                    and
+                    <a href="https://github.com/si3792">Simo</a>
+                    for the course
+                    <a href="http://www.faculty.jacobs-university.de/pbaumann/iu-bremen.de_pbaumann//Courses/Databases+WebApplications/index.php">DBWA 2015</a>.
+                    <a href="html/about.html">About Page</a>.
+                </p>
+            </div>
+        </footer>
+
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="js/ie10-viewport-bug-workaround.js"></script>
+    </body>
+</html>
