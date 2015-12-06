@@ -113,7 +113,7 @@
                                     <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar{{$index}}').toggle();" href="#Bar{{$index}}" data-toggle="collapse"/>
                                 </td>
                             </tr>
-                            <tr id="Bar{{$index}}" class="collapse in"><td><div>Should be collapsed</div></td><td></td>
+                            <tr id="Bar{{$index}}" class="collapse out"><td><div>Should be collapsed</div></td><td></td>
                                 <td> <input name="submitBookButton" class="btn btn-default" type="button" value="Submit" /></td></tr>
                         </tbody>
                     </table>
