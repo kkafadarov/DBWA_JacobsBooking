@@ -51,7 +51,7 @@ h1 {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #05457B !important ;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -92,7 +92,7 @@ h1 {
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #fff !important;
 }
 
 .sidebar-nav li a:hover {
@@ -110,6 +110,7 @@ h1 {
     height: 65px;
     font-size: 18px;
     line-height: 60px;
+    color: #bbb !important;
 }
 
 .sidebar-nav > .sidebar-brand a {

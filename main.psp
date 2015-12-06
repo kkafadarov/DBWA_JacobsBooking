@@ -39,7 +39,7 @@
         <div id="sidebar-wrapper" ng-init="tab = 1">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
-                    JacobsBooking
+                    Dashboard
                 </li>
                 <li>
                     <a href ng-click="tab = 1">Book items</a>
