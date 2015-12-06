@@ -34,7 +34,7 @@
 
 <body ng-app="jBook">
 
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="SidebarController as sidebarCtrl">
 
         <!-- Sidebar -->
         <div id="sidebar-wrapper" ng-init="tab = 1">
@@ -43,25 +43,25 @@
                     Dashboard
                 </li>
                 <li>
-                    <a href ng-click="tab = 1">Book items</a>
+                    <a href ng-click="sidebarCtrl.selectTab(1)">Book items</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 2">My Bookings</a>
+                    <a href ng-click="sidebarCtrl.selectTab(2)">My Bookings</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 3">Manage Objects</a>
+                    <a href ng-click="sidebarCtrl.selectTab(3)">Manage Objects</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 4">Pending Requests</a>
+                    <a href ng-click="sidebarCtrl.selectTab(4)">Pending Requests</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 5">Overdue Objects</a>
+                    <a href ng-click="sidebarCtrl.selectTab(5)">Overdue Objects</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 6">Manage Admins</a>
+                    <a href ng-click="sidebarCtrl.selectTab(6)">Manage Admins</a>
                 </li>
                 <li>
-                    <a href ng-click="tab = 7">Logout</a>
+                    <a href ng-click="sidebarCtrl.selectTab(7)">Logout</a>
                 </li>
             </ul>
         </div>
@@ -74,7 +74,7 @@
                     <div class="col-lg-12">
                             <a class="btn btn-default" href="#menu-toggle" id="menu-toggle">
                                 <span id = "change_dir" class="glyphicon glyphicon-chevron-left"></span></a>
-                            <h1>Jacobs Booking</h1>
+                            <h1 style="padding-left: 20px">Jacobs Booking - {{sidebarCtrl.tabToText(sidebarCtrl.tab)}}</h1>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
 
             <div ng-controller="JBookController as jbcontroller" id="main-view">
                 <!-- Book VIEW-->
-                <div ng-show="tab == 1">
+                <div ng-show="sidebarCtrl.checkTab(1)">
 
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="searchBar" id="searchBar" ng-model="searchText">
@@ -107,7 +107,7 @@
                 </div>
 
                 <!-- My Bookings VIEW -->
-                <div ng-show="tab == 2">
+                <div ng-show="sidebarCtrl.checkTab(2)">
 
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="searchMyBookings" id="searchBar" ng-model="searchMyBookings">
@@ -134,7 +134,7 @@
                     </table>
                 </div>
 
-                <div ng-show="tab == 3">
+                <div ng-show="sidebarCtrl.checkTab(3)">
 
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Search" name="searchManageObjects" id="searchManageObjects" ng-model="searchText">
@@ -146,7 +146,7 @@
                     <table class="table table-hover"  cellpadding="1" cellspacing="1" style="width: 80%">
                         <tbody>
                             <tr>
-                            <td>Add bookable</td>    
+                            <td>Add bookable</td>
                             <td></td>
                             <td><input name="createButton" class="btn btn-default" type="button" value="Create" id="create_bookable"/></td>
                             </tr>
@@ -175,7 +175,7 @@
                 </div>
 
                 <!-- Pending requests VIEW -->
-                <div ng-show="tab == 4">
+                <div ng-show="sidebarCtrl.checkTab(4)">
 
                     <table class="table table-hover" cellpadding="1" cellspacing="1" style="width: 80%">
                         <tbody>
@@ -196,7 +196,7 @@
                 </div>
 
                                 <!-- Pending requests VIEW -->
-                <div ng-show="tab == 5">
+                <div ng-show="sidebarCtrl.checkTab(5)">
 
                     <table class="table table-hover" cellpadding="1" cellspacing="1" style="width: 80%">
                         <tbody>

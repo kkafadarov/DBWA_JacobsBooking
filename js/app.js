@@ -36,5 +36,31 @@ app.controller('JBookController', function(){
     this.overdueObjects = dummiesOverdueObj;
 });
 
+app.controller('SidebarController', function(){
+
+    this.tab = 1;
+
+    this.selectTab = function(newTab) {
+        this.tab = newTab;
+    };
+
+    this.checkTab = function(cmpTab) {
+            if(cmpTab == this.tab)return true;
+            return false;
+    };
+
+    this.tabToText = function(tab) {
+        if(tab == 1) return "Book";
+        if(tab == 2) return "My Bookings";
+        if(tab == 3) return "Manage Objects";
+        if(tab == 4) return "Pending Requests";
+        if(tab == 5) return "Overdue Objects";
+        if(tab == 6) return "Manage Admins";
+        if(tab == 7) return "Logout";
+        return "";
+    };
+
+});
+
 
 })();
