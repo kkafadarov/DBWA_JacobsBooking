@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <meta content="" name="description">
+        <meta content="" name="author">
+
+        <title>Jacobs Booking - Login</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles -->
+        <link href="css/forms.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+        <link href="css/sticky-footer.css" rel="stylesheet">
+
+        <script src="js/angular.min.js"></script>
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src="js/app.js"></script>
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/simple-sidebar.css" rel="stylesheet">
+
+    </head>
+
+    <body ng-app="jBook">
+
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        JacobsBooking
+                    </li>
+                    <li>
+                        <a href="#">Book items</a>
+                    </li>
+                    <li>
+                        <a href="#">My Bookables</a>
+                    </li>
+                    <li>
+                        <a href="#">Manage Objects</a>
+                    </li>
+                    <li>
+                        <a href="#">Pending Requests</a>
+                    </li>
+                    <li>
+                        <a href="#">Overdue Objects</a>
+                    </li>
+                    <li>
+                        <a href="#">Manage Admins</a>
+                    </li>
+                    <li>
+                        <a href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /#sidebar-wrapper -->
+
+            <!-- Page Content -->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Jacobs Booking</h1>
+                            <a class="btn btn-default" href="#menu-toggle" id="menu-toggle">Toggle Menu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-controller="JBookController as jbcontroller">
+                    <input name="searchBar" ng-model="searchText" type="text"/></p>
+
+                <table border="1" cellpadding="1" cellspacing="1" style="width: 80%">
+                    <tbody>
+                        <tr ng-repeat="bookable in jbcontroller.bookables | filter:searchText">
+                            <td>
+                                {{bookable.name}}</td>
+                            <td>
+                                {{bookable.status}}</td>
+                            <td>
+                                <input name="bookButton" type="button" value="Book"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+
+</body>
+
+</html>
