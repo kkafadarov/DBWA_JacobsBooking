@@ -32,7 +32,7 @@
 
 </head>
 
-<body ng-app="jBook">
+<body ng-app="jBook"  ng-controller="JBookController as jbcontroller">
 
     <div id="wrapper" ng-controller="SidebarController as sidebarCtrl">
 
@@ -49,16 +49,16 @@
                     <a href ng-click="sidebarCtrl.selectTab(2)">My Bookings</a>
                 </li>
                 <li>
-                    <a href ng-click="sidebarCtrl.selectTab(3)">Manage Objects</a>
+                    <a href ng-click="sidebarCtrl.selectTab(3)" ng-show="jbcontroller.userLevel > 1">Manage Objects</a>
                 </li>
                 <li>
-                    <a href ng-click="sidebarCtrl.selectTab(4)">Pending Requests</a>
+                    <a href ng-click="sidebarCtrl.selectTab(4)" ng-show="jbcontroller.userLevel > 1">Pending Requests</a>
                 </li>
                 <li>
-                    <a href ng-click="sidebarCtrl.selectTab(5)">Overdue Objects</a>
+                    <a href ng-click="sidebarCtrl.selectTab(5)" ng-show="jbcontroller.userLevel > 1">Overdue Objects</a>
                 </li>
                 <li>
-                    <a href ng-click="sidebarCtrl.selectTab(6)">Manage Admins</a>
+                    <a href ng-click="sidebarCtrl.selectTab(6)" ng-show="jbcontroller.userLevel > 2">Manage Admins</a>
                 </li>
                 <li>
                     <a href ng-click="sidebarCtrl.selectTab(7)">Logout</a>
@@ -81,7 +81,7 @@
             </div>
 
 
-            <div ng-controller="JBookController as jbcontroller" id="main-view">
+            <div id="main-view">
                 <!-- Book VIEW-->
                 <div ng-show="sidebarCtrl.checkTab(1)">
 
@@ -293,7 +293,7 @@
 });
     </script>
 
-    <script type='text/javascript'>//<![CDATA[ 
+    <script type='text/javascript'>//<![CDATA[
         $(window).load(function(){
         //save the selector so you don't have to do the lookup everytime
         $dropdown = $("#actioncontextMenu");
@@ -308,7 +308,7 @@
             //show dropdown
             $(this).dropdown();
         });
-        });//]]>  
+        });//]]>
     </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
