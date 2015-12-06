@@ -110,10 +110,10 @@
                                 <td>
                                     {{bookable.status}}</td>
                                 <td>
-                                    <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar').toggle();"/>
+                                    <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar{{$index}}').toggle();" href="#Bar{{$index}}" data-toggle="collapse"/>
                                 </td>
                             </tr>
-                            <tr id="Bar" class="collapse in"><td><div>Should be collapsed</div></td><td></td>
+                            <tr id="Bar{{$index}}" class="collapse in"><td><div>Should be collapsed</div></td><td></td>
                                 <td> <input name="submitBookButton" class="btn btn-default" type="button" value="Submit" /></td></tr>
                         </tbody>
                     </table>
@@ -281,15 +281,6 @@
             $("#change_dir").toggleClass("glyphicon glyphicon-chevron-left").toggleClass("glyphicon glyphicon-chevron-right");
         });
 
-        $(".btn").click(function() {
-            alert("clicked!");
-    if($("#collapseme").hasClass("out")) {
-        $("#collapseme").addClass("in");
-        $("#collapseme").removeClass("out");
-    } else {
-        $("#collapseme").addClass("out");
-        $("#collapseme").removeClass("in");
-    }
 });
     </script>
 
