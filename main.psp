@@ -17,6 +17,7 @@
     <!-- Custom styles -->
     <link href="css/forms.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
     <link href="css/sticky-footer.css" rel="stylesheet">
 
     <script src="js/angular.min.js"></script>
@@ -24,6 +25,7 @@
     <script src="js/jquery.js"></script>
     <script src="js/app.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -80,6 +82,17 @@
                 </div>
             </div>
 
+            <input type="text" placeholder="click to show datepicker" id="example1">
+            <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#example1').datepicker({
+                    format: "dd/mm/yyyy"
+                });  
+            
+            });
+            </script>
 
             <div id="main-view">
                 <!-- Book VIEW-->
@@ -113,14 +126,19 @@
                                     <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar{{$index}}').toggle();" href="#Bar{{$index}}" data-toggle="collapse"/>
                                 </td>
                             </tr>
-                            <tr id="Bar{{$index}}" class="collapse in">
+                            <tr id="Bar{{$index}}" class="collapse out">
                                 <td>
-                                    <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control">
-                                    <div class="input-group-addon">
-                                    <span class="glyphicon glyphicon-th"></span>
-                                    </div>
-                                    </div>
+                                    <input type="text" placeholder="click to show datepicker" id="example{{$index}}">
+                                    <script type="text/javascript">
+                                    // When the document is ready
+                                    $(document).ready(function () {
+                                        
+                                        $('#example{{$index}}').datepicker({
+                                            format: "dd/mm/yyyy"
+                                        });  
+                                    
+                                    });
+                                    </script>
                                 </td>
                                 <td>
                                 </td>
@@ -326,7 +344,6 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
-
 </body>
 
 </html>
