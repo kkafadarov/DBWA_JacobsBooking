@@ -23,3 +23,4 @@ if __name__ == '__main__':
   title = "Test"
 
   print mail_util.send_mail(me, sender, data, title)
+  print open_jub.is_authenticated(token)

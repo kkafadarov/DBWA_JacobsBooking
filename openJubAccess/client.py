@@ -39,10 +39,14 @@ class JacobsUser:
   def __str__(self):
     return repr(self.json_data)
 
-def get_user(username):
+def get_user(username, token=None):
   url = api_url('user/name/%s' % username)
+  if token != None:
+    payload = { 'token':token }
+  else:
+    payload = None
 
-  response = requests.get(url, verify=False)
+  response = requests.get(url, json=payload, verify=False)
   if response.status_code != 200:
     raise Exception("Cannot get user: %s" % response.text)
   return JacobsUser(response.json())
@@ -51,7 +55,7 @@ def get_users(query):
   url = api_url('query/%s' % q)
 
   if token != None:
-    payload = { 'token': token }
+    payload = { 'token':token }
   else:
     payload = None
 
@@ -67,3 +71,19 @@ def get_users(query):
       users.append(JacobsUser(user))
 
   return users
+
+def is_authenticated(token=None):
+  url = api_url('auth/status')
+  
+  if token != None:
+    payload = { 'token':token }
+  else:
+    payload = None
+
+  response = requests.get(url, json=payload, verify=False)
+  if response.status_code == 200:
+    return True
+
+  print "Authentication error %s" % response.text
+  return False
+
