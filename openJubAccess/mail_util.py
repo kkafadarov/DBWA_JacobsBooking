@@ -33,7 +33,7 @@ def send_mail(recepient, sender, email, title = None):
   telnet.write(email)
   telnet.write("\r\n.\r\n")
   telnet.write("quit\r\n")
-  response = telnet.read_until(expected=MAIL_QUEUED, timeout=10)
+  response = telnet.read_until(MAIL_QUEUED, 10)
   # READ RESPONSE!!
   telnet.close()
 

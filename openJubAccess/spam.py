@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import open_jub_client as open_jub
+import client as open_jub
 import getpass
 import mail_util
 from expected_errors import *

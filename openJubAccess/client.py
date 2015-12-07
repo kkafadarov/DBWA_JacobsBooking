@@ -5,6 +5,8 @@ from expected_errors import *
 
 f, filename, description = imp.find_module('requests', ['requests'])
 requests = imp.load_module('requests', f, filename, description)
+requests.packages.urllib3.disable_warnings()
+
 
 def api_url(api):
   return '{0}/{1}'.format(config.openJubUrl, api)
@@ -12,7 +14,7 @@ def api_url(api):
 def login(username, password):
   url = api_url('auth/signin')
   payload = { 'username':username, 'password':password }
-  response = requests.post(url, json=payload)
+  response = requests.post(url, json=payload, verify=False)
 
   if response.status_code != 200:
     raise LoginException("Error when authenticating with OpenJUB: %s" % response.text)
@@ -40,20 +42,10 @@ class JacobsUser:
 def get_user(username):
   url = api_url('user/name/%s' % username)
 
-  response = requests.get(url)
+  response = requests.get(url, verify=False)
   if response.status_code != 200:
     raise Exception("Cannot get user: %s" % response.text)
   return JacobsUser(response.json())
-
-def auth_status(token):
-  url = api_url('auth/status')
-  payload = { 'token':token }
-
-  response = requests.get(url, json=payload)
-  if response.status_code != 200:
-    print "Auth error: %s" % response.text
-    return False
-  return True
 
 def get_users(query):
   url = api_url('query/%s' % q)
@@ -65,7 +57,7 @@ def get_users(query):
 
   users = []
   while url != False and url != 'false':
-    response = requests.get(url, json=payload)
+    response = requests.get(url, json=payload, verify=False)
     if response.status_code != 200:
       raise Exception("Error when retrieving users: %s" % response.text)
 
