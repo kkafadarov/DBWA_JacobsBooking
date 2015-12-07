@@ -113,8 +113,19 @@
                                     <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar{{$index}}').toggle();" href="#Bar{{$index}}" data-toggle="collapse"/>
                                 </td>
                             </tr>
-                            <tr id="Bar{{$index}}" class="collapse in"><td><div>Should be collapsed</div></td><td></td>
-                                <td> <input name="submitBookButton" class="btn btn-default" type="button" value="Submit" /></td></tr>
+                            <tr id="Bar{{$index}}" class="collapse in">
+                                <td>
+                                    <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-th"></span>
+                                    </div>
+                                    </div>
+                                </td>
+                                <td>
+                                </td>
+                                <td> <input name="submitBookButton" class="btn btn-default" type="button" value="Submit" /></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -281,8 +292,24 @@
             $("#change_dir").toggleClass("glyphicon glyphicon-chevron-left").toggleClass("glyphicon glyphicon-chevron-right");
         });
 
+       $(".btn").click(function() {
+   if($("#collapseme").hasClass("out")) {
+        $("#collapseme").addClass("in");
+       $("#collapseme").removeClass("out");
+   } else {
+       $("#collapseme").addClass("out");
+       $("#collapseme").removeClass("in");
+   }
+
+
 });
     </script>
+
+  <script>
+  $(function() {
+    $( "#datepicker{{$index}}" ).datepicker();
+  });
+  </script>
 
     <script type='text/javascript'>//<![CDATA[ 
         $(window).load(function(){
