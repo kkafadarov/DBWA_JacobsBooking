@@ -43,6 +43,16 @@ h1 {
     padding-left: 250px;
 }
 
+.input-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width:80%;
+}
+
+#searchBar {
+    /*width:70%;*/
+}
+
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
