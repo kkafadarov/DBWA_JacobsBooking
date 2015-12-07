@@ -1,9 +1,10 @@
 #!/usr/bin/python
 import config
+import imp
 from expected_errors import *
-import requests
 
-token = None
+f, filename, description = imp.find_module('requests', 'requests')
+requests = imp.load_module('requests', f, filename, description)
 
 def api_url(api):
   return '{0}/{1}'.format(config.openJubUrl, api)
