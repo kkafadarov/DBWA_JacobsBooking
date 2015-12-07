@@ -7,7 +7,6 @@ f, filename, description = imp.find_module('requests', ['requests'])
 requests = imp.load_module('requests', f, filename, description)
 requests.packages.urllib3.disable_warnings()
 
-token = None
 
 def api_url(api):
   return '{0}/{1}'.format(config.openJubUrl, api)
@@ -43,7 +42,7 @@ class JacobsUser:
 def get_user(username):
   url = api_url('user/name/%s' % username)
 
-  response = requests.get(url, , verify=False)
+  response = requests.get(url, verify=False)
   if response.status_code != 200:
     raise Exception("Cannot get user: %s" % response.text)
   return JacobsUser(response.json())
