@@ -1,3 +1,0 @@
-[submodule "openJubAccess/requests"]
-	path = openJubAccess/requests
-	url = git@github.com:kennethreitz/requests.git

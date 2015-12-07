@@ -3,7 +3,7 @@ import config
 import imp
 from expected_errors import *
 
-f, filename, description = imp.find_module('requests')
+f, filename, description = imp.find_module('requests', ['requests'])
 requests = imp.load_module('requests', f, filename, description)
 
 def api_url(api):
