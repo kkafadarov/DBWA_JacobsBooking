@@ -20,6 +20,13 @@
 
 /* Toggle Styles */
 
+#menu-toggle{
+    float: left;
+    margin-top: 20px;
+    margin-left: -15px;
+}
+
+
 #wrapper {
     padding-left: 0;
     -webkit-transition: all 0.5s ease;
@@ -28,8 +35,26 @@
     transition: all 0.5s ease;
 }
 
+h1 {
+    float: left;
+}
+
+#create_bookable{
+    width:74%;
+}
+
 #wrapper.toggled {
     padding-left: 250px;
+}
+
+.input-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width:80%;
+}
+
+#searchBar {
+    /*width:70%;*/
 }
 
 #sidebar-wrapper {
@@ -40,7 +65,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #000;
+    background: #05457B !important ;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -81,7 +106,7 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: #999999;
+    color: #fff !important;
 }
 
 .sidebar-nav li a:hover {
@@ -99,6 +124,7 @@
     height: 65px;
     font-size: 18px;
     line-height: 60px;
+    color: #bbb !important;
 }
 
 .sidebar-nav > .sidebar-brand a {
