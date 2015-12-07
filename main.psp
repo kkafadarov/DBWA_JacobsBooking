@@ -92,16 +92,18 @@
                     </div>
 
                     <table class="table table-hover"  cellpadding="1" cellspacing="1" style="width: 80%">
-                        <tbody>
-                            <tr ng-repeat="bookable in jbcontroller.bookables | filter:searchText">
+                        <tbody ng-repeat="bookable in jbcontroller.bookables | filter:searchText">
+                            <tr>
                                 <td>
                                     {{bookable.name}}</td>
                                 <td>
                                     {{bookable.status}}</td>
                                 <td>
-                                    <input name="bookButton" class="btn btn-default" type="button" value="Book" />
+                                    <input name="bookButton" class="btn btn-default" type="button" value="Book" data-toggle="collapse" onclick="$('#Bar').toggle();"/>
                                 </td>
                             </tr>
+                            <tr id="Bar" class="collapse in"><td><div>Should be collapsed</div></td><td></td>
+                                <td> <input name="submitBookButton" class="btn btn-default" type="button" value="Submit" /></td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -190,9 +192,15 @@
                                 <td>
                                     {{request.time}}
                                 </td>
+                                <td class="dropdown"><a class="btn btn-default actionButton"
+                                    data-toggle="dropdown" href="#"> Action </a></td>
                             </tr>
                         </tbody>
                     </table>
+                    <ul id="actioncontextMenu" class="dropdown-menu" role="menu">
+                            <li><a tabindex="-1" href="#" class="approveLink">Approve</a></li>
+                            <li><a tabindex="-1" href="#" class="rejectLink">Reject</a></li>
+                    </ul>
                 </div>
 
                                 <!-- Pending requests VIEW -->
@@ -212,10 +220,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
-
-
             </div>
 
         </div>
@@ -246,6 +250,35 @@
             $("#wrapper").toggleClass("toggled");
             $("#change_dir").toggleClass("glyphicon glyphicon-chevron-left").toggleClass("glyphicon glyphicon-chevron-right");
         });
+
+        $(".btn").click(function() {
+            alert("clicked!");
+    if($("#collapseme").hasClass("out")) {
+        $("#collapseme").addClass("in");
+        $("#collapseme").removeClass("out");
+    } else {
+        $("#collapseme").addClass("out");
+        $("#collapseme").removeClass("in");
+    }
+});
+    </script>
+
+    <script type='text/javascript'>//<![CDATA[ 
+        $(window).load(function(){
+        //save the selector so you don't have to do the lookup everytime
+        $dropdown = $("#actioncontextMenu");
+        $(".actionButton").click(function() {
+            //get row ID
+            var id = $(this).closest("tr").children().first().html();
+            //move dropdown menu
+            $(this).after($dropdown);
+            //update links
+            $dropdown.find(".approveLink").attr("href", "/transaction/approve?id="+id);
+            $dropdown.find(".rejectLink").attr("href", "/transaction/reject?id="+id);
+            //show dropdown
+            $(this).dropdown();
+        });
+        });//]]>  
     </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
