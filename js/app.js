@@ -22,11 +22,18 @@ var dummiesRequests = [
     {name: "Room Bla", requestBy: "Kiril Kafadarov",  date: '11/02/2016', time: '8:30'}
 ];
 
+var dummiesOverdueObj = [
+	{name: "Room bla", bookedBy: "V", dueDate: '12/05/2016'},
+	{name: "Room bla", bookedBy: "V", dueDate: '12/05/2016'},
+	{name: "Room bla", bookedBy: "V", dueDate: '12/05/2016'},
+];
+
 app.controller('JBookController', function(){
 
     this.myBookings = dummiesMyBookings;
     this.bookables = dummies;
     this.pendingRequests = dummiesRequests;
+    this.overdueObjects = dummiesOverdueObj;
 });
 
 

@@ -134,6 +134,46 @@
                     </table>
                 </div>
 
+                <div ng-show="tab == 3">
+
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="searchManageObjects" id="searchManageObjects" ng-model="searchText">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover"  cellpadding="1" cellspacing="1" style="width: 80%">
+                        <tbody>
+                            <tr>
+                            <td>Add bookable</td>    
+                            <td></td>
+                            <td><input name="createButton" class="btn btn-default" type="button" value="Create" id="create_bookable"/></td>
+                            </tr>
+                            <tr ng-repeat="bookable in jbcontroller.bookables | filter:searchText">
+                                <td>
+                                    {{bookable.name}}</td>
+                                <td>
+                                    {{bookable.status}}</td>
+                                <td>
+                                    <input name="modifyButton" class="btn btn-default" type="button" value="Modify" />
+                                    <input name="removeButton" class="btn btn-default" type="button" value="Remove" />
+                                </td>
+                            </tr>
+                            <tr ng-repeat="myBooking in jbcontroller.myBookings | filter:searchMyBookings">
+                                <td>
+                                    {{myBooking.name}}</td>
+                                <td>
+                                    {{myBooking.status}}</td>
+                                <td>
+                                    <input name="modifyButton" class="btn btn-default" type="button" value="Modify" />
+                                    <input name="removeButton" class="btn btn-default" type="button" value="Remove" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <!-- Pending requests VIEW -->
                 <div ng-show="tab == 4">
 
@@ -154,6 +194,26 @@
                         </tbody>
                     </table>
                 </div>
+
+                                <!-- Pending requests VIEW -->
+                <div ng-show="tab == 5">
+
+                    <table class="table table-hover" cellpadding="1" cellspacing="1" style="width: 80%">
+                        <tbody>
+                            <tr ng-repeat="request in jbcontroller.overdueObjects">
+                                <td>
+                                    {{request.name}}</td>
+                                <td>
+                                    {{request.bookedBy}}</td>
+                                <td>
+                                    {{request.dueDate}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
 
 
             </div>
