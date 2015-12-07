@@ -68,3 +68,19 @@ def get_users(query):
       users.append(JacobsUser(user))
 
   return users
+
+def is_authenticated(token=None):
+  url = api_url('auth/status')
+  
+  if token != None:
+    payload = { 'token': token }
+  else:
+    payload = None
+
+  response = requests.post(url, json=payload, verify=False)
+  if response.status_code == 200:
+    return True
+
+  print "Authentication error %s" % response.text
+  return False
+
